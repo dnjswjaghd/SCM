@@ -19,13 +19,14 @@ public interface TestSwaggerController {
     @ApiResponses(
             value = {
                     @ApiResponse(responseCode = "200", description = "성공", content = {
-                            @Content(schema = @Schema(implementation = String.class))
-                    })
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = String.class))
+                    }),
+                    @ApiResponse(responseCode = "405", description = "매개 인자 잘못 삽입")
             }
     )
     String test1();
     String testDto(@Parameter(description = "테스트 디티오입니다", required = true) @RequestBody(
-            content = @Content(examples = {
+            content = @Content(mediaType = "application/json", examples = {
                     @ExampleObject(name = "테스트 디티오 예제", value = """
                             {
                                 "userId" : "testId"
